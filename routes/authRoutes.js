@@ -13,8 +13,22 @@ router.post('/register'  ,  async (req , res  )  => {
     const {username  ,  email  , password  }  = req.body ; 
 
     try {
+        // Validate user input
+        if (!username || !email || !password) {
+            return res.status(400).json({ msg: 'Please enter all fields' });
+        }
+
+        // Check for valid email format (basic regex)
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            return res.status(400).json({ msg: 'Please enter a valid email' });
+        }
+
+        let user =  await User.findOne({username  }) ;  
+        if (user) return res.status(400).json({msg: 'Username  already exists try  with another ' }) ;
+
         // check if the  user is  already present 
-        let user =  await User.findOne({email }) ;  
+        user =  await User.findOne({email }) ;  
         if (user) return res.status(400).json({msg: 'User already exists' }) ;
 
         // create a  new  user Instance   
@@ -34,6 +48,7 @@ router.post('/register'  ,  async (req , res  )  => {
         res.status(201).json({ msg: 'User registered successfully' });
         
     }catch (error) {
+    console.log(error);
     console.error(error.message);
     res.status(500).send('Server error');
     }
