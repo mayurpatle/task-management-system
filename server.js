@@ -1,6 +1,7 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const  mongoose = require('mongoose')  ;  
+const authRoutes = require('./routes/authRoutes');
 
 // Load environment variables from .env file
 dotenv.config();
@@ -9,6 +10,10 @@ const app = express();
 
 // Middleware to parse JSON requests
 app.use(express.json());
+
+// Middleware to use authroutes 
+app.use('/api', authRoutes);
+
 
 
 // coonect to  MongoDb 
