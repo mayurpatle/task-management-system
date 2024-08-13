@@ -3,6 +3,8 @@ const dotenv = require('dotenv');
 const  mongoose = require('mongoose')  ;  
 const authRoutes = require('./routes/authRoutes');
 const taskRoutes = require('./routes/taskRoutes')
+const profileRoutes = require('./routes/profileRoutes');
+
 // Load environment variables from .env file
 dotenv.config();
 
@@ -17,7 +19,8 @@ app.use('/api', authRoutes);
 // Task Routes
 app.use('/api/task', taskRoutes);
 
-
+// Profile    Routes 
+app.use('/api/profile', profileRoutes);
 
 
 // coonect to  MongoDb 
