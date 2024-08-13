@@ -2,7 +2,7 @@ const express = require('express');
 const dotenv = require('dotenv');
 const  mongoose = require('mongoose')  ;  
 const authRoutes = require('./routes/authRoutes');
-
+const taskRoutes = require('./routes/taskRoutes')
 // Load environment variables from .env file
 dotenv.config();
 
@@ -13,6 +13,9 @@ app.use(express.json());
 
 // Middleware to use authroutes 
 app.use('/api', authRoutes);
+
+// Task Routes
+app.use('/api/task', taskRoutes);
 
 
 
