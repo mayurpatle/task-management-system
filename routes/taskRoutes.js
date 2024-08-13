@@ -40,7 +40,7 @@ router.get('/',  authMiddleware ,  async   (req  , res  )  => {
             return res.status(404).json({ msg: 'Task not found' });
         }
 
-    res.json(task);
+    res.json(tasks);
 
     }  catch(error){
         console.error(error.message);
